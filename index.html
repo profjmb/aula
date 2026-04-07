@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aula Virtual - Prof. JMBF</title>
-  <!-- Bootstrap 5.3.3 CSS -->
-  <link href="https:
-  <link rel="stylesheet" href="https://jsdelivr.net">
-  <style>
-    body { background-color: #f8f9fa; padding-bottom: 80px; }
-    .accordion-button:not(.collapsed) { background-color: #e7f1ff; color: #0d6efd; box-shadow: none; }
-    iframe { border-radius: 10px; border: 1px solid #dee2e6; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo Bootstrap</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    
+    <div class="container mt-5">
+        <h1 class="text-primary">Olá, mundo!</h1>
+        <p class="lead">Este é um site base com Bootstrap.</p>
+        <button class="btn btn-success">Botão Exemplo</button>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-9">
@@ -197,8 +201,7 @@
   </div>
 
   <!-- Bootstrap 5.3.3 JS Bundle -->
-  <script src="https:
-  <script>
+  <script src="https:     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     function corrigir() {
       const inputs = document.querySelectorAll('input[type="radio"]');
       const nomes = [...new Set([...inputs].map(i => i.name))];
