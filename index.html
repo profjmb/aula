@@ -1,18 +1,21 @@
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Documento sem nome</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https:
+    <style>body { background-color: #f8f9fa; } .container { max-width: 800px; }</style>
   </head>
-  <body class="bg-light">
-    <div class="container py-5 bg-white shadow-sm">
-      <div class="mb-4 border-bottom pb-3">
-        <label class="form-label fw-bold">Selecione seu nome para iniciar:</label>
+  <body>
+    <div class="container my-5 p-4 bg-white shadow-sm rounded">
+      <div class="alert alert-primary mb-4">
+        <label class="form-label fw-bold">Identificação do Aluno:</label>
         <select id="selectAluno" class="form-select form-select-lg">
-          <option value="">-- Lista de Alunos --</option>
+          <option value="">-- Escolha seu nome na lista --</option>
           
         </select>
       </div>
@@ -504,37 +507,41 @@ BEATRIZ VICTÓRIA DUARTE</p>
   </div>
 </div>
       
-      <div class="mt-5 text-center">
-        <button class="btn btn-success btn-lg px-5" onclick="corrigir()">Finalizar e Enviar Respostas</button>
+      <div class="text-center mt-5">
+        <button class="btn btn-success btn-lg px-5" onclick="corrigir()">Finalizar e Enviar Nota</button>
       </div>
     </div>
-
-
-          <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>   
-
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+    
+    <script>
      
-      const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbx6ToTeNUt8RH4g60kNWpbvL4IET53RvlS6G3Mpyxjh7X7W1FQiIMpMwn0AlkPk2LQ-/exec";
+      const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx6ToTeNUt8RH4g60kNWpbvL4IET53RvlS6G3Mpyxjh7X7W1FQiIMpMwn0AlkPk2LQ-/exec";
 
       function corrigir() {
         const aluno = document.getElementById('selectAluno').value;
-        if (!aluno) return alert("Erro: Selecione seu nome na lista!");
+        if (!aluno) return alert("⚠️ Selecione seu nome antes de enviar!");
 
         const inputs = document.querySelectorAll('input[type="radio"]');
         const grupos = [...new Set([...inputs].map(i => i.name))];
         
         let acertos = 0;
         let respostasDadas = {};
+        let respondidasCount = 0;
 
         grupos.forEach(g => {
           const sel = document.querySelector('input[name="'+g+'"]:checked');
           if (sel) {
+            respondidasCount++;
             respostasDadas[g] = sel.value;
             if (sel.dataset.correct === "true") acertos++;
-          } else {
-            respostasDadas[g] = "Não respondida";
           }
         });
+
+        if (respondidasCount < grupos.length) {
+          return alert("⚠️ Você só respondeu " + respondidasCount + " de " + grupos.length + " questões. Todas são obrigatórias!");
+        }
 
         const dados = {
           nomeAluno: aluno,
@@ -544,21 +551,11 @@ BEATRIZ VICTÓRIA DUARTE</p>
           respostas: respostasDadas
         };
 
-        fetch(URL_PLANILHA, { method: "POST", mode: "no-cors", body: JSON.stringify(dados) })
-          .then(() => alert("Parabéns " + aluno + "! Você acertou " + acertos + " de " + grupos.length + ". Sua nota foi gravada."))
-          .catch(e => alert("Erro ao enviar: " + e));
+        fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", body: JSON.stringify(dados) })
+          .then(() => alert("✅ Sucesso, " + aluno + "! Nota registrada: " + acertos + " acertos."))
+          .catch(e => alert("❌ Erro ao enviar dados."));
       }
     </script>
   </body>
 </html>
-
-
-   
       
-
-    
-
-    
-   
-
- 
