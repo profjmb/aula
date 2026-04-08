@@ -166,7 +166,7 @@ function enviar(){
     if(s.dataset.correct === "true") ac++;
   });
 
-  fetch("SUA_URL_AQUI", {method:"POST", mode:"no-cors", body:JSON.stringify({nomeAluno:aluno, idAula:document.title, acertos:ac, totalQuestoes:total, respostasDetalhadas:det.join(" | ")})})
+  fetch("https://script.google.com/macros/s/AKfycbx6ToTeNUt8RH4g60kNWpbvL4IET53RvlS6G3Mpyxjh7X7W1FQiIMpMwn0AlkPk2LQ-/exec", {method:"POST", mode:"no-cors", body:JSON.stringify({nomeAluno:aluno, idAula:document.title, acertos:ac, totalQuestoes:total, respostasDetalhadas:det.join(" | ")})})
   .then(function(){ alert("✅ Tudo certo! Suas respostas foram enviadas."); });
 }
 </script>
