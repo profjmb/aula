@@ -12,24 +12,33 @@
   </style>
 
 
-    <style>
-        /* Ajusta o tamanho da fonte apenas no celular */
-        @media (max-width: 575.98px) {
-            body {
-                font-size: 1.15rem; 
-            }
-            .form-control-lg {
-                font-size: 1.1rem; /* Deixa o texto dentro da caixa de resposta grande */
-            }
+<style>
+    /* Ajusta o tamanho da fonte apenas no celular */
+    @media (max-width: 575.98px) {
+        body {
+            /* 1.5rem é bem grande (cerca de 24px). Ajuste conforme o gosto. */
+            font-size: 1.5rem !important; 
         }
         
-        /* Estilo opcional para a barra colorida do Google Forms */
-        .forms-header {
-            height: 10px;
-            background-color: #673ab7; /* Roxo padrão do Google */
-            border-radius: 8px 8px 0 0;
+        /* Deixa o texto que a pessoa digita e os títulos ainda maiores */
+        .form-control-lg, .form-label, h1 {
+            font-size: 1.6rem !important;
         }
-    </style>
+
+        /* Se quiser que o título principal seja gigante */
+        .display-6 {
+            font-size: 2.2rem !important;
+            font-weight: 500;
+        }
+    }
+    
+    /* Estilo da barra colorida (mantido) */
+    .forms-header {
+        height: 10px;
+        background-color: #673ab7;
+        border-radius: 8px 8px 0 0;
+    }
+</style>
 
   
 </head>
