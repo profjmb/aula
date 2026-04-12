@@ -1,0 +1,97 @@
+const jsonPuro = '[
+{"titulo":"Aula 01: Segunda Lei de Newton",
+"questoes":[
+{"pergunta":"[Básico] De acordo com a Segunda Lei de Newton, a aceleração de um corpo é:",
+"alternativas":[
+{"texto":"Independente da força aplicada.","correta":null},
+{"texto":"Inversamente proporcional à força resultante.","correta":null},
+{"texto":"Diretamente proporcional à força resultante.","correta":true},
+{"texto":"Igual à velocidade multiplicada pela massa.","correta":null},
+{"texto":"Sempre nula em corpos com massa grande.","correta":null}]},
+{"pergunta":"[Intermediário] Um bloco de 5kg recebe uma força resultante de 20N. Qual a sua aceleração?",
+"alternativas":[
+{"texto":"100 m/s²","correta":null},
+{"texto":"4 m/s²","correta":true},
+{"texto":"0,25 m/s²","correta":null},
+{"texto":"15 m/s²","correta":null},
+{"texto":"2 m/s²","correta":null}]},
+{"pergunta":"[Avançado] Se a força resultante sobre um objeto dobra e sua massa é reduzida à metade, a aceleração:",
+"alternativas":[
+{"texto":"Permanece constante.","correta":null},
+{"texto":"Dobra.","correta":null},
+{"texto":"Quadruplica.","correta":true},
+{"texto":"Reduz-se à quarta parte.","correta":null},
+{"texto":"Torna-se oito vezes maior.","correta":null}]}]},
+
+{"titulo":"Aula 02: Terceira Lei de Newton",
+"questoes":[
+{"pergunta":"[Básico] Por que as forças de ação e reação não se anulam mutualmente?",
+"alternativas":[
+{"texto":"Porque possuem intensidades diferentes.","correta":null},
+{"texto":"Porque atuam em corpos diferentes.","correta":true},
+{"texto":"Porque possuem a mesma direção e sentido.","correta":null},
+{"texto":"Porque são forças de natureza distinta.","correta":null},
+{"texto":"Porque só ocorrem em sistemas em repouso.","correta":null}]},
+{"pergunta":"[Intermediário] Um nadador empurra a água para trás para se deslocar para frente. Isso ocorre porque:",
+"alternativas":[
+{"texto":"A água exerce uma força de reação para frente no nadador.","correta":true},
+{"texto":"A força da água é menor que a do nadador.","correta":null},
+{"texto":"A água não oferece resistência.","correta":null},
+{"texto":"A inércia da água é nula.","correta":null},
+{"texto":"A aceleração do nadador independe da força.","correta":null}]},
+{"pergunta":"[Avançado] Um par de forças de ação e reação (3ª Lei de Newton) possui sempre:",
+"alternativas":[
+{"texto":"Mesmo módulo, mesma direção e mesmo sentido.","correta":null},
+{"texto":"Módulos diferentes, mas mesma direção.","correta":null},
+{"texto":"Mesmo módulo, mesma direção e sentidos opostos.","correta":true},
+{"texto":"Mesmo módulo, mas direções perpendiculares.","correta":null},
+{"texto":"Sentidos opostos e módulos que dependem da massa de cada corpo.","correta":null}]}]},
+
+{"titulo":"Aula 03: Forças de Contato e de Campo",
+"questoes":[
+{"pergunta":"[Básico] Qual das seguintes forças é classificada como uma força de campo?",
+"alternativas":[
+{"texto":"Força Normal.","correta":null},
+{"texto":"Força de Atrito.","correta":null},
+{"texto":"Força de Tração.","correta":null},
+{"texto":"Força Peso (Gravitacional).","correta":true},
+{"texto":"Força Elástica.","correta":null}]},
+{"pergunta":"[Intermediário] Qual a principal diferença entre massa e peso?",
+"alternativas":[
+{"texto":"A massa muda com o planeta, o peso não.","correta":null},
+{"texto":"O peso é uma propriedade do corpo, a massa é uma força.","correta":null},
+{"texto":"A massa é medida em Newtons e o peso em Kg.","correta":null},
+{"texto":"A massa é constante, enquanto o peso depende da gravidade local.","correta":true},
+{"texto":"Ambos são grandezas vetoriais idênticas.","correta":null}]},
+{"pergunta":"[Avançado] Um astronauta de 80kg viaja para um planeta onde a gravidade é 1/4 da Terra. Lá, sua massa e peso serão:",
+"alternativas":[
+{"texto":"20kg e 200N.","correta":null},
+{"texto":"80kg e 800N.","correta":null},
+{"texto":"80kg e 200N.","correta":true},
+{"texto":"20kg e 800N.","correta":null},
+{"texto":"Zero, pois no espaço não há gravidade.","correta":null}]}]},
+
+{"titulo":"Aula 04: Força Normal",
+"questoes":[
+{"pergunta":"[Básico] A força Normal é definida como:",
+"alternativas":[
+{"texto":"A força que a Terra faz sobre os corpos.","correta":null},
+{"texto":"A reação de apoio de uma superfície, sempre perpendicular a ela.","correta":true},
+{"texto":"A força que puxa cabos e cordas.","correta":null},
+{"texto":"Uma força que sempre aponta para baixo.","correta":null},
+{"texto":"A força que impede o atrito.","correta":null}]},
+{"pergunta":"[Intermediário] Em uma mesa horizontal, um livro de 2kg está em repouso. Qual o módulo da Normal (g=10 m/s²)?",
+"alternativas":[
+{"texto":"2 N","correta":null},
+{"texto":"0 N","correta":null},
+{"texto":"10 N","correta":null},
+{"texto":"20 N","correta":true},
+{"texto":"5 N","correta":null}]},
+{"pergunta":"[Avançado] Se você pressionar um bloco de peso 10N contra o teto com uma força vertical para cima de 30N, a força Normal do teto sobre o bloco será:",
+"alternativas":[
+{"texto":"10 N, para baixo.","correta":null},
+{"texto":"20 N, para baixo.","correta":true},
+{"texto":"30 N, para cima.","correta":null},
+{"texto":"40 N, para baixo.","correta":null},
+{"texto":"Zero.","correta":null}]}]}
+]';
