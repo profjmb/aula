@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css rel="stylesheet">
+  <style>
+    body{ background:#f4f7f6; padding:20px; font-family: sans-serif; scroll-behavior: smooth; }
+    .main-box{ max-width:850px; margin:auto; background:white; padding:30px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.1); }
+    .questao-bloco { border-left: 5px solid #0d6efd; margin-bottom: 25px; padding: 15px; background: #f8f9fa; border-radius: 5px; transition: 0.3s; }
+    .erro-questao{ border: 2px solid #dc3545 !important; background:#fff5f5 !important; }
+  </style>
+
+<style>
+    /* Ajusta o tamanho da fonte apenas no celular */
+    @media (max-width: 575.98px) {
+        body {
+            /* 1.5rem é bem grande (cerca de 24px). Ajuste conforme o gosto. */
+            font-size: 1.5rem !important; 
+        }
+        
+        /* Deixa o texto que a pessoa digita e os títulos ainda maiores */
+        .form-control-lg, .form-label, h1 {
+            font-size: 1.6rem !important;
+        }
+
+        /* Se quiser que o título principal seja gigante */
+        .display-6 {
+            font-size: 2.2rem !important;
+            font-weight: 500;
+        }
+    }
+    
+    /* Estilo da barra colorida (mantido) */
+    .forms-header {
+        height: 10px;
+        background-color: #673ab7;
+        border-radius: 8px 8px 0 0;
+    }
+
+
+<style>
+    /* Aplicando diretamente na classe do botão e forçando em todos os estados */
+    .accordion-button, 
+    .accordion-header button,
+    button.accordion-button {
+        font-size: 2.5rem !important; 
+        line-height: 1.2 !important;
+    }
+
+    /* Garante que mesmo quando o acordeon estiver aberto ou focado, a letra continue grande */
+    .accordion-button:not(.collapsed),
+    .accordion-button:focus {
+        font-size: 2.5rem !important;
+    }
+.accordion-button.collapsed {
+    background-color: #f8f9fa; /* Fundo cinza claro */
+    color: #000;               /* Texto preto */
+    font-size: 2.5rem !important; /* Pode deixar um pouco menor que o aberto */
+}
+  
+</style>
+</style>
+
+</head>
+<body>
+
+  <div class="main-box">
+
+      <!-- Bloco do Cabeçalho (Imagem + Título) -->
+
+      <div class="card shadow-sm border-0 mb-3">
+      <!-- Imagem responsiva com bordas superiores arredondadas -->
+      <img src="CabecalhoForms.png" class="img-fluid rounded-top" alt="Cabeçalho Simulados">
+      <!-- <h1 class="text-center mb-4 text-primary">Simulados 2026</h1> -->
+      <h1 class="text-center mb-4 text-primary display-4 fw-bold">Simulados 2026</h1>
+      <p class="text-muted text-center">Selecione o seu nome para começar.</p>
+      </div>
+
+    
+    <!-- <h4 class="text-center mb-4 text-primary">Simulados Embaralhados 2026</h4> -->
+    <div class="p-3 mb-4 bg-primary text-white rounded shadow-sm">
+      <select id="selAluno" class="form-select">
+        <option value="" disabled selected>-- Selecione seu nome --</option>
+        <option value="ANGA CLARA SERAFIM SANTANA">ANGA CLARA SERAFIM SANTANA</option><option value="RUAN VITOR DAS NEVES SANTANA">RUAN VITOR DAS NEVES SANTANA</option><option value="JOÃO PEDRO DE SOUZA LIMA">JOÃO PEDRO DE SOUZA LIMA</option><option value="LEONARDO APARECIDO DE SOUZA">LEONARDO APARECIDO DE SOUZA</option><option value="PIETRA GABRIELLY RAMALHO NESPOLI">PIETRA GABRIELLY RAMALHO NESPOLI</option><option value="ERICK JAMES VERDEIRO FREITAS">ERICK JAMES VERDEIRO FREITAS</option><option value="VITOR CANDIDO RODRIGUES">VITOR CANDIDO RODRIGUES</option><option value="PABLO HENRIQUE GUIMARÃES">PABLO HENRIQUE GUIMARÃES</option><option value="MATHEUS JOSE DOS SANTOS PURO">MATHEUS JOSE DOS SANTOS PURO</option><option value="CIBELLI DOS SANTOS DE SOUZA">CIBELLI DOS SANTOS DE SOUZA</option><option value="MARIA RITA DE CARVALHO RODELLA">MARIA RITA DE CARVALHO RODELLA</option><option value="MIKAEL DO NASCIMENTO PACHECO">MIKAEL DO NASCIMENTO PACHECO</option><option value="ENZO RONCOLATO DOS SANTOS">ENZO RONCOLATO DOS SANTOS</option><option value="PABLO DAVI LOPES CELESTINO">PABLO DAVI LOPES CELESTINO</option><option value="SOFIA ROCHA BISPO">SOFIA ROCHA BISPO</option><option value="THALITA DIAS SANTOS ALENCAR">THALITA DIAS SANTOS ALENCAR</option><option value="LIVIA ISABELLY DA SILVA SENA">LIVIA ISABELLY DA SILVA SENA</option><option value="MATHEUS HENRIQUE JESUS MASCARI">MATHEUS HENRIQUE JESUS MASCARI</option><option value="HAGATHA NUNES DE LIMA">HAGATHA NUNES DE LIMA</option>
+      </select>
+
+    </div>
+    <div id="mainAcc" class="accordion"></div>
+    <div class="text-center mt-5">
+      <button id="btn" class="btn btn-success btn-lg px-5 fw-bold shadow" onclick="enviar()">🚀 FINALIZAR E ENVIAR RESPOSTAS</button>
+    </div>
+  </div>
+ 
+    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js></script>
+  <script>
+
+   <!-- const jsonPuro = '[{"titulo":"Avaliação de Português","questoes":[{"pergunta":"Quantos e quais cabos um HD ou SSD SATA interno de 2.5 necessita para funcionar corretamente?","alternativas":[{"texto":"Apenas um cabo de dados de 7 pinos.","correta":null},{"texto":"Um único cabo USB que fornece dados e energia.","correta":null},{"texto":"Dois cabos distintos: um de dados (7 pinos) e um de alimentação (15 pinos).","correta":true},{"texto":"Três cabos: dados, energia e aterramento externo.","correta":null},{"texto":"Apenas um cabo de energia de 15 pinos conectado à placa-mãe.","correta":null}]},{"pergunta":"Qual é a função específica do cabo de dados SATA de 7 pinos na instalação de um disco?","alternativas":[{"texto":"Fornecer a tensão de 12V necessária para girar o motor do HD.","correta":null},{"texto":"Conectar o dispositivo à placa-mãe para a transferência de informações.","correta":true},{"texto":"Ligar o HD diretamente à fonte de alimentação do computador.","correta":null},{"texto":"Converter o sinal analógico do disco em sinal digital USB.","correta":null},{"texto":"Alimentar a placa lógica do SSD com 3.3V.","correta":null}]},{"pergunta":"Sobre a instalação de SSDs no formato M.2, qual afirmação está correta?","alternativas":[{"texto":"Eles exigem cabos Y para dividir a energia com o HD principal.","correta":null},{"texto":"Utilizam os mesmos cabos planos de 7 pinos dos HDs de desktop.","correta":null},{"texto":"Precisam de adaptadores Molex para funcionar em placas-mãe antigas.","correta":null},{"texto":"Não utilizam cabos; são encaixados e parafusados diretamente em um slot da placa-mãe.","correta":true},{"texto":"Requerem uma conexão direta com a fonte de alimentação via cabo de 15 pinos.","correta":null}]},{"pergunta":"O que acontece ao utilizar um cabo SATA de um computador de 15 anos atrás em um SSD SATA III moderno?","alternativas":[{"texto":"O SSD sofrerá um curto-circuito devido à incompatibilidade de pinagem.","correta":null},{"texto":"O Windows não reconhecerá o dispositivo por falta de drivers legados.","correta":null},{"texto":"O encaixe será fisicamente impossível, pois os conectores mudaram.","correta":null},{"texto":"O encaixe funcionará, mas a velocidade de transferência poderá ser limitada.","correta":true},{"texto":"O cabo converterá automaticamente a velocidade para 6Gb/s.","correta":null}]},{"pergunta":"Por que adaptadores USB simples (sem fonte externa) geralmente não funcionam com HDs de desktop (3.5)?","alternativas":[{"texto":"Porque o USB não possui largura de banda suficiente para discos grandes.","correta":null},{"texto":"Porque HDs de desktop utilizam apenas 3.3V, voltagem que o USB não fornece.","correta":null},{"texto":"Porque o USB fornece apenas 5V, e esses HDs precisam de 12V para o motor.","correta":true},{"texto":"Porque a porta USB causa interferência magnética nos discos do HD.","correta":null},{"texto":"Porque o conector de dados de um HD de 3.5 é diferente do conector de um SSD.","correta":null}]},{"pergunta":"Qual é a principal diferença de voltagem entre um HD de desktop (3.5) e um SSD SATA (2.5)?","alternativas":[{"texto":"O HD utiliza 3.3V e o SSD utiliza 12V.","correta":null},{"texto":"O SSD exige 12V para operar, enquanto o HD opera apenas com 5V.","correta":null},{"texto":"O HD precisa de 5V e 12V, enquanto o SSD de 2.5 utiliza apenas 5V.","correta":true},{"texto":"Ambos utilizam exclusivamente a linha de 12V da fonte de alimentação.","correta":null},{"texto":"O HD de desktop dispensa energia da fonte e usa apenas a da placa-mãe.","correta":null}]},{"pergunta":"O que caracteriza um Cabo Divisor SATA (Sata Power Splitter) segundo o texto?","alternativas":[{"texto":"Um cabo que separa os dados da energia em um único conector USB.","correta":null},{"texto":"Uma extensão em Y que cria duas ou mais saídas de energia a partir de um cabo da fonte.","correta":true},{"texto":"Um adaptador que transforma um slot M.2 em duas portas SATA de dados.","correta":null},{"texto":"Um componente que reduz a voltagem de 12V para 3.3V para proteger o SSD.","correta":null},{"texto":"Um cabo utilizado exclusivamente para ligar HDs externos na porta USB.","correta":null}]},{"pergunta":"Qual é o risco mencionado sobre o uso de adaptadores Molex para SATA (conectores brancos de 4 pinos)?","alternativas":[{"texto":"Eles limitam a velocidade do SSD para o padrão SATA I.","correta":null},{"texto":"Eles impedem que o computador reconheça mais de um HD.","correta":null},{"texto":"Eles não fornecem a voltagem de 5V necessária para a placa lógica.","correta":null},{"texto":"Eles são frequentemente de baixa qualidade e podem causar curto-circuito.","correta":true},{"texto":"Eles são compatíveis apenas com SSDs do tipo M.2 NVMe.","correta":null}]},{"pergunta":"Sobre a fixação de um SSD de 2.5 com fita dupla face no gabinete, qual é a recomendação correta?","alternativas":[{"texto":"Deve-se colar o SSD diretamente em cima do HD para aproveitar a ventilação.","correta":null},{"texto":"A fita deve ser evitada pois a vibração do SSD pode descolá-la rapidamente.","correta":null},{"texto":"É uma solução segura, desde que não seja colado em componentes que esquentam muito.","correta":true},{"texto":"A fita só deve ser usada se o SSD for do tipo M.2.","correta":null},{"texto":"O SSD deve ser colado obrigatoriamente na placa-mãe para evitar perda de dados.","correta":null}]},{"pergunta":"Qual é a voltagem específica fornecida pelo slot da placa-mãe para um SSD M.2?","alternativas":[{"texto":"12V DC.","correta":null},{"texto":"5V DC.","correta":null},{"texto":"110V AC.","correta":null},{"texto":"3.3V DC.","correta":true},{"texto":"9V DC.","correta":null}]}]},{"titulo":"Avaliação de Matemática","questoes":[{"pergunta":"Quantos e quais cabos um HD ou SSD SATA interno de 2.5 necessita para funcionar corretamente?","alternativas":[{"texto":"Apenas um cabo de dados de 7 pinos.","correta":null},{"texto":"Um único cabo USB que fornece dados e energia.","correta":null},{"texto":"Dois cabos distintos: um de dados (7 pinos) e um de alimentação (15 pinos).","correta":true},{"texto":"Três cabos: dados, energia e aterramento externo.","correta":null},{"texto":"Apenas um cabo de energia de 15 pinos conectado à placa-mãe.","correta":null}]},{"pergunta":"Qual é a função específica do cabo de dados SATA de 7 pinos na instalação de um disco?","alternativas":[{"texto":"Fornecer a tensão de 12V necessária para girar o motor do HD.","correta":null},{"texto":"Conectar o dispositivo à placa-mãe para a transferência de informações.","correta":true},{"texto":"Ligar o HD diretamente à fonte de alimentação do computador.","correta":null},{"texto":"Converter o sinal analógico do disco em sinal digital USB.","correta":null},{"texto":"Alimentar a placa lógica do SSD com 3.3V.","correta":null}]},{"pergunta":"Sobre a instalação de SSDs no formato M.2, qual afirmação está correta?","alternativas":[{"texto":"Eles exigem cabos Y para dividir a energia com o HD principal.","correta":null},{"texto":"Utilizam os mesmos cabos planos de 7 pinos dos HDs de desktop.","correta":null},{"texto":"Precisam de adaptadores Molex para funcionar em placas-mãe antigas.","correta":null},{"texto":"Não utilizam cabos; são encaixados e parafusados diretamente em um slot da placa-mãe.","correta":true},{"texto":"Requerem uma conexão direta com a fonte de alimentação via cabo de 15 pinos.","correta":null}]},{"pergunta":"O que acontece ao utilizar um cabo SATA de um computador de 15 anos atrás em um SSD SATA III moderno?","alternativas":[{"texto":"O SSD sofrerá um curto-circuito devido à incompatibilidade de pinagem.","correta":null},{"texto":"O Windows não reconhecerá o dispositivo por falta de drivers legados.","correta":null},{"texto":"O encaixe será fisicamente impossível, pois os conectores mudaram.","correta":null},{"texto":"O encaixe funcionará, mas a velocidade de transferência poderá ser limitada.","correta":true},{"texto":"O cabo converterá automaticamente a velocidade para 6Gb/s.","correta":null}]},{"pergunta":"Por que adaptadores USB simples (sem fonte externa) geralmente não funcionam com HDs de desktop (3.5)?","alternativas":[{"texto":"Porque o USB não possui largura de banda suficiente para discos grandes.","correta":null},{"texto":"Porque HDs de desktop utilizam apenas 3.3V, voltagem que o USB não fornece.","correta":null},{"texto":"Porque o USB fornece apenas 5V, e esses HDs precisam de 12V para o motor.","correta":true},{"texto":"Porque a porta USB causa interferência magnética nos discos do HD.","correta":null},{"texto":"Porque o conector de dados de um HD de 3.5 é diferente do conector de um SSD.","correta":null}]},{"pergunta":"Qual é a principal diferença de voltagem entre um HD de desktop (3.5) e um SSD SATA (2.5)?","alternativas":[{"texto":"O HD utiliza 3.3V e o SSD utiliza 12V.","correta":null},{"texto":"O SSD exige 12V para operar, enquanto o HD opera apenas com 5V.","correta":null},{"texto":"O HD precisa de 5V e 12V, enquanto o SSD de 2.5 utiliza apenas 5V.","correta":true},{"texto":"Ambos utilizam exclusivamente a linha de 12V da fonte de alimentação.","correta":null},{"texto":"O HD de desktop dispensa energia da fonte e usa apenas a da placa-mãe.","correta":null}]},{"pergunta":"O que caracteriza um Cabo Divisor SATA (Sata Power Splitter) segundo o texto?","alternativas":[{"texto":"Um cabo que separa os dados da energia em um único conector USB.","correta":null},{"texto":"Uma extensão em Y que cria duas ou mais saídas de energia a partir de um cabo da fonte.","correta":true},{"texto":"Um adaptador que transforma um slot M.2 em duas portas SATA de dados.","correta":null},{"texto":"Um componente que reduz a voltagem de 12V para 3.3V para proteger o SSD.","correta":null},{"texto":"Um cabo utilizado exclusivamente para ligar HDs externos na porta USB.","correta":null}]},{"pergunta":"Qual é o risco mencionado sobre o uso de adaptadores Molex para SATA (conectores brancos de 4 pinos)?","alternativas":[{"texto":"Eles limitam a velocidade do SSD para o padrão SATA I.","correta":null},{"texto":"Eles impedem que o computador reconheça mais de um HD.","correta":null},{"texto":"Eles não fornecem a voltagem de 5V necessária para a placa lógica.","correta":null},{"texto":"Eles são frequentemente de baixa qualidade e podem causar curto-circuito.","correta":true},{"texto":"Eles são compatíveis apenas com SSDs do tipo M.2 NVMe.","correta":null}]},{"pergunta":"Sobre a fixação de um SSD de 2.5 com fita dupla face no gabinete, qual é a recomendação correta?","alternativas":[{"texto":"Deve-se colar o SSD diretamente em cima do HD para aproveitar a ventilação.","correta":null},{"texto":"A fita deve ser evitada pois a vibração do SSD pode descolá-la rapidamente.","correta":null},{"texto":"É uma solução segura, desde que não seja colado em componentes que esquentam muito.","correta":true},{"texto":"A fita só deve ser usada se o SSD for do tipo M.2.","correta":null},{"texto":"O SSD deve ser colado obrigatoriamente na placa-mãe para evitar perda de dados.","correta":null}]},{"pergunta":"Qual é a voltagem específica fornecida pelo slot da placa-mãe para um SSD M.2?","alternativas":[{"texto":"12V DC.","correta":null},{"texto":"5V DC.","correta":null},{"texto":"110V AC.","correta":null},{"texto":"3.3V DC.","correta":true},{"texto":"9V DC.","correta":null}]}]}]'; -->
+
+
+const jsonPuro = '[ \
+{"titulo":"Segunda Lei de Newton","questoes":[ \
+{"pergunta":"[Básico] Segundo a Segunda Lei de Newton, a aceleração de um corpo é:","alternativas":[{"texto":"Independente da força aplicada.","correta":null},{"texto":"Inversamente proporcional à força resultante.","correta":null},{"texto":"Diretamente proporcional à força resultante.","correta":true},{"texto":"Igual à velocidade multiplicada pela massa.","correta":null},{"texto":"Sempre nula em corpos com massa grande.","correta":null}]}, \
+{"pergunta":"[Intermediário] Um bloco de 5kg recebe uma força resultante de 20N. Qual a sua aceleração?","alternativas":[{"texto":"100 m/s²","correta":null},{"texto":"4 m/s²","correta":true},{"texto":"0,25 m/s²","correta":null},{"texto":"15 m/s²","correta":null},{"texto":"2 m/s²","correta":null}]}, \
+{"pergunta":"[Avançado] Se a força resultante sobre um objeto dobra e sua massa é reduzida à metade, a aceleração:","alternativas":[{"texto":"Permanece constante.","correta":null},{"texto":"Dobra.","correta":null},{"texto":"Quadruplica.","correta":true},{"texto":"Reduz-se à quarta parte.","correta":null},{"texto":"Torna-se oito vezes maior.","correta":null}]}]}, \
+{"titulo":"Terceira Lei de Newton","questoes":[ \
+{"pergunta":"[Básico] O par de forças de ação e reação caracteriza-se por:","alternativas":[{"texto":"Atuar no mesmo corpo.","correta":null},{"texto":"Ter intensidades diferentes.","correta":null},{"texto":"Atuar em corpos diferentes, com mesma intensidade e sentidos opostos.","correta":true},{"texto":"Anular-se sempre.","correta":null},{"texto":"Ter direções perpendiculares entre si.","correta":null}]}, \
+{"pergunta":"[Intermediário] Um nadador empurra a água para trás para se deslocar para frente. Isso ocorre porque:","alternativas":[{"texto":"A água exerce uma força de reação para frente no nadador.","correta":true},{"texto":"A força da água é menor que a do nadador.","correta":null},{"texto":"A água não oferece resistência.","correta":null},{"texto":"A inércia da água é nula.","correta":null},{"texto":"A aceleração do nadador independe da força.","correta":null}]}, \
+{"pergunta":"[Avançado] No salto de uma pessoa a partir de um barco parado, nota-se que o barco se move no sentido oposto. Por quê?","alternativas":[{"texto":"Pela conservação da massa.","correta":null},{"texto":"Porque a força de reação da pessoa empurra o barco para trás.","correta":true},{"texto":"Devido ao atrito com o ar.","correta":null},{"texto":"Porque o peso da pessoa diminui.","correta":null},{"texto":"Pela ausência de gravidade.","correta":null}]}]}, \
+{"titulo":"Forças de Contato e de Campo","questoes":[ \
+{"pergunta":"[Básico] Qual força abaixo é um exemplo de força de campo?","alternativas":[{"texto":"Tração.","correta":null},{"texto":"Atrito.","correta":null},{"texto":"Normal.","correta":null},{"texto":"Peso.","correta":true},{"texto":"Empuxo.","correta":null}]}, \
+{"pergunta":"[Intermediário] Qual a principal diferença entre massa e peso?","alternativas":[{"texto":"A massa muda com o planeta, o peso não.","correta":null},{"texto":"O peso é uma propriedade do corpo, a massa é uma força.","correta":null},{"texto":"A massa é medida em Newtons.","correta":null},{"texto":"A massa é constante, enquanto o peso depende da gravidade local.","correta":true},{"texto":"Ambos são grandezas vetoriais idênticas.","correta":null}]}, \
+{"pergunta":"[Avançado] Um objeto de 10kg na Terra (g=10) é levado para a Lua (g=1,6). Quais seus novos valores?","alternativas":[{"texto":"Massa 1,6kg e Peso 16N.","correta":null},{"texto":"Massa 10kg e Peso 16N.","correta":true},{"texto":"Massa 10kg e Peso 100N.","correta":null},{"texto":"Massa 60kg e Peso 10N.","correta":null},{"texto":"Massa 1,6kg e Peso 100N.","correta":null}]}]}, \
+{"titulo":"Força Normal","questoes":[ \
+{"pergunta":"[Básico] A força Normal é definida como:","alternativas":[{"texto":"A força que a Terra faz sobre os corpos.","correta":null},{"texto":"A reação de apoio de uma superfície, sempre perpendicular a ela.","correta":true},{"texto":"A força que puxa cabos.","correta":null},{"texto":"Uma força que sempre aponta para baixo.","correta":null},{"texto":"A força que impede o atrito.","correta":null}]}, \
+{"pergunta":"[Intermediário] Em uma mesa horizontal, um livro de 2kg está em repouso. Qual o módulo da Normal (g=10)?","alternativas":[{"texto":"2 N","correta":null},{"texto":"0 N","correta":null},{"texto":"10 N","correta":null},{"texto":"20 N","correta":true},{"texto":"5 N","correta":null}]}, \
+{"pergunta":"[Avançado] Se você pressionar um bloco de 10N contra o teto com uma força vertical de 30N para cima, a Normal será:","alternativas":[{"texto":"10 N para baixo.","correta":null},{"texto":"20 N para baixo.","correta":true},{"texto":"30 N para cima.","correta":null},{"texto":"40 N para baixo.","correta":null},{"texto":"Zero.","correta":null}]}]}, \
+{"titulo":"Analisando as Polias","questoes":[ \
+{"pergunta":"[Básico] Qual a função de uma polia fixa?","alternativas":[{"texto":"Diminuir o esforço necessário.","correta":null},{"texto":"Mudar a direção e o sentido da força aplicada.","correta":true},{"texto":"Aumentar a massa do objeto.","correta":null},{"texto":"Anular a gravidade.","correta":null},{"texto":"Multiplicar a energia.","correta":null}]}, \
+{"pergunta":"[Intermediário] Para erguer um peso de 400N usando uma polia móvel, qual força deve ser feita?","alternativas":[{"texto":"400 N","correta":null},{"texto":"800 N","correta":null},{"texto":"200 N","correta":true},{"texto":"100 N","correta":null},{"texto":"50 N","correta":null}]}, \
+{"pergunta":"[Avançado] Em um sistema com 3 polias móveis, a força necessária para equilibrar um peso P é:","alternativas":[{"texto":"P/3","correta":null},{"texto":"P/4","correta":null},{"texto":"P/6","correta":null},{"texto":"P/8","correta":true},{"texto":"P/2","correta":null}]}]}, \
+{"titulo":"Atrito Estático","questoes":[ \
+{"pergunta":"[Básico] A força de atrito estático atua quando:","alternativas":[{"texto":"O corpo desliza rápido.","correta":null},{"texto":"Não há tendência de movimento.","correta":null},{"texto":"Há uma força tentando mover o corpo, mas ele permanece parado.","correta":true},{"texto":"O corpo está no vácuo.","correta":null},{"texto":"A superfície é perfeitamente lisa.","correta":null}]}, \
+{"pergunta":"[Intermediário] Se o atrito estático máximo é 50N e você empurra o corpo com 30N:","alternativas":[{"texto":"O corpo se move.","correta":null},{"texto":"O corpo permanece parado e o atrito vale 30N.","correta":true},{"texto":"O atrito vale 50N.","correta":null},{"texto":"O corpo acelera.","correta":null},{"texto":"O atrito é zero.","correta":null}]}, \
+{"pergunta":"[Avançado] O coeficiente de atrito estático depende de quê?","alternativas":[{"texto":"Apenas da massa.","correta":null},{"texto":"Apenas da área.","correta":null},{"texto":"Dos materiais em contato e do acabamento das superfícies.","correta":true},{"texto":"Da velocidade.","correta":null},{"texto":"Do tempo.","correta":null}]}]}, \
+{"titulo":"Atrito Dinâmico","questoes":[ \
+{"pergunta":"[Básico] O atrito dinâmico ocorre quando:","alternativas":[{"texto":"O objeto está parado.","correta":null},{"texto":"Há deslizamento entre as superfícies.","correta":true},{"texto":"A força é zero.","correta":null},{"texto":"No vácuo.","correta":null},{"texto":"A normal é nula.","correta":null}]}, \
+{"pergunta":"[Intermediário] Geralmente, o coeficiente de atrito dinâmico é _______ que o estático.","alternativas":[{"texto":"Maior","correta":null},{"texto":"Igual","correta":null},{"texto":"Menor","correta":true},{"texto":"O dobro","correta":null},{"texto":"Infinito","correta":null}]}, \
+{"pergunta":"[Avançado] Um bloco desliza com velocidade constante sob uma força de 10N. O atrito dinâmico é:","alternativas":[{"texto":"Zero.","correta":null},{"texto":"Menor que 10N.","correta":null},{"texto":"Exatamente 10N.","correta":true},{"texto":"Maior que 10N.","correta":null},{"texto":"Indeterminado.","correta":null}]}]}, \
+{"titulo":"Força Elástica","questoes":[ \
+{"pergunta":"[Básico] Segundo a Lei de Hooke, a força elástica é diretamente proporcional a quê?","alternativas":[{"texto":"À massa do objeto.","correta":null},{"texto":"À aceleração da gravidade.","correta":null},{"texto":"À deformação (x) sofrida pela mola.","correta":true},{"texto":"Ao tempo de uso da mola.","correta":null},{"texto":"À densidade do material.","correta":null}]}, \
+{"pergunta":"[Intermediário] Uma mola com constante k = 200 N/m é comprimida em 5 cm (0,05 m). Qual a força elástica?","alternativas":[{"texto":"1000 N","correta":null},{"texto":"10 N","correta":true},{"texto":"20 N","correta":null},{"texto":"50 N","correta":null},{"texto":"1 N","correta":null}]}, \
+{"pergunta":"[Avançado] Se substituirmos uma mola por outra com o dobro da constante elástica (2k), para a mesma força aplicada, a deformação será:","alternativas":[{"texto":"O dobro.","correta":null},{"texto":"A mesma.","correta":null},{"texto":"A metade.","correta":true},{"texto":"Quatro vezes menor.","correta":null},{"texto":"Nula.","correta":null}]}]}, \
+{"titulo":"Plano Inclinado","questoes":[ \
+{"pergunta":"[Básico] Num plano inclinado sem atrito, qual componente do peso faz o objeto acelerar rampa abaixo?","alternativas":[{"texto":"Peso total.","correta":null},{"texto":"Componente Normal.","correta":null},{"texto":"Componente paralela (Px = P.senθ).","correta":true},{"texto":"Componente perpendicular (Py = P.cosθ).","correta":null},{"texto":"A força de tração.","correta":null}]}, \
+{"pergunta":"[Intermediário] Ao aumentar o ângulo de inclinação de uma rampa, o que ocorre com a força Normal?","alternativas":[{"texto":"Aumenta.","correta":null},{"texto":"Diminui, pois Py diminui.","correta":true},{"texto":"Permanece constante.","correta":null},{"texto":"Torna-se igual ao peso total.","correta":null},{"texto":"Anula a força peso.","correta":null}]}, \
+{"pergunta":"[Avançado] Um bloco desce um plano inclinado de 30º com aceleração de 3 m/s². Se a aceleração teórica sem atrito seria 5 m/s² (g.sen30º), podemos afirmar que:","alternativas":[{"texto":"Não há atrito.","correta":null},{"texto":"A força de atrito reduziu a aceleração.","correta":true},{"texto":"A massa do bloco aumentou na descida.","correta":null},{"texto":"A gravidade mudou.","correta":null},{"texto":"O bloco está em equilíbrio.","correta":null}]}]}, \
+{"titulo":"Trabalho de uma Força","questoes":[ \
+{"pergunta":"[Básico] Qual é a condição necessária para que uma força realize trabalho sobre um corpo?","alternativas":[{"texto":"O corpo deve estar parado.","correta":null},{"texto":"Deve haver deslocamento na direção (ou componente) da força.","correta":true},{"texto":"A força deve ser perpendicular ao movimento.","correta":null},{"texto":"A massa deve ser nula.","correta":null},{"texto":"A velocidade deve ser constante.","correta":null}]}, \
+{"pergunta":"[Intermediário] Uma força de 10 N atua perpendicularmente ao deslocamento de um objeto por 5 metros. O trabalho realizado é:","alternativas":[{"texto":"50 J","correta":null},{"texto":"25 J","correta":null},{"texto":"0 J (Trabalho nulo).","correta":true},{"texto":"2 J","correta":null},{"texto":"-50 J","correta":null}]}, \
+{"pergunta":"[Avançado] O trabalho da força de atrito durante o deslizamento de um bloco é geralmente:","alternativas":[{"texto":"Positivo (motor).","correta":null},{"texto":"Negativo (resistente), pois se opõe ao deslocamento.","correta":true},{"texto":"Nulo.","correta":null},{"texto":"Independente da distância.","correta":null},{"texto":"Sempre igual ao trabalho da força peso.","correta":null}]}]}, \
+{"titulo":"Energia Cinética","questoes":[ \
+{"pergunta":"[Básico] A energia cinética de um corpo depende de quais grandezas?","alternativas":[{"texto":"Massa e altura.","correta":null},{"texto":"Massa e velocidade.","correta":true},{"texto":"Peso e gravidade.","correta":null},{"texto":"Força e tempo.","correta":null},{"texto":"Volume e densidade.","correta":null}]}, \
+{"pergunta":"[Intermediário] Se um veículo dobra sua velocidade (2v), sua energia cinética:","alternativas":[{"texto":"Dobra.","correta":null},{"texto":"Permanece a mesma.","correta":null},{"texto":"Quadruplica (aumenta 4x).","correta":true},{"texto":"Triplica.","correta":null},{"texto":"Reduz-se à metade.","correta":null}]}, \
+{"pergunta":"[Avançado] Qual a energia cinética de um corpo de 4 kg movendo-se a 5 m/s?","alternativas":[{"texto":"10 J","correta":null},{"texto":"20 J","correta":null},{"texto":"50 J","correta":true},{"texto":"100 J","correta":null},{"texto":"25 J","correta":null}]}]}, \
+{"titulo":"Teorema da Energia Cinética","questoes":[ \
+{"pergunta":"[Básico] Segundo o Teorema da Energia Cinética, o trabalho da força resultante é igual a:","alternativas":[{"texto":"Energia potencial inicial.","correta":null},{"texto":"Variação da energia cinética (ΔEc).","correta":true},{"texto":"Trabalho do atrito.","correta":null},{"texto":"Energia mecânica total.","correta":null},{"texto":"Força vezes aceleração.","correta":null}]}, \
+{"pergunta":"[Intermediário] Se um objeto parte do repouso e recebe um trabalho resultante de 100 J, sua energia cinética final será:","alternativas":[{"texto":"0 J","correta":null},{"texto":"50 J","correta":null},{"texto":"100 J","correta":true},{"texto":"200 J","correta":null},{"texto":"Indeterminada.","correta":null}]}, \
+{"pergunta":"[Avançado] Um trabalho resultante negativo sobre um corpo em movimento indica que:","alternativas":[{"texto":"Sua velocidade aumentou.","correta":null},{"texto":"Sua velocidade diminuiu.","correta":true},{"texto":"Ele mudou de direção.","correta":null},{"texto":"Sua energia potencial aumentou.","correta":null},{"texto":"O corpo parou instantaneamente.","correta":null}]}]}, \
+{"titulo":"Conservação da Energia","questoes":[ \
+{"pergunta":"[Básico] Num sistema conservativo ideal (sem atrito), a energia mecânica total:","alternativas":[{"texto":"Sempre aumenta.","correta":null},{"texto":"Sempre diminui.","correta":null},{"texto":"Permanece constante.","correta":true},{"texto":"Depende apenas da gravidade.","correta":null},{"texto":"Zera no ponto mais alto.","correta":null}]}, \
+{"pergunta":"[Intermediário] Um objeto solto de uma altura h transforma sua energia _________ em energia _________ durante a queda.","alternativas":[{"texto":"Cinética / Potencial.","correta":null},{"texto":"Potencial Gravitacional / Cinética.","correta":true},{"texto":"Térmica / Elástica.","correta":null},{"texto":"Elástica / Cinética.","correta":null},{"texto":"Química / Térmica.","correta":null}]}, \
+{"pergunta":"[Avançado] Se um skatista parte do repouso de uma altura de 3,2 m, qual sua velocidade no ponto mais baixo (g=10, sem atrito)?","alternativas":[{"texto":"8 m/s","correta":true},{"texto":"4 m/s","correta":null},{"texto":"10 m/s","correta":null},{"texto":"32 m/s","correta":null},{"texto":"6,4 m/s","correta":null}]}]}, \
+{"titulo":"Sistemas Não Conservativos","questoes":[ \
+{"pergunta":"[Básico] O que acontece com a energia mecânica em um sistema com forças dissipativas (atrito)?","alternativas":[{"texto":"Ela se conserva.","correta":null},{"texto":"Ela aumenta.","correta":null},{"texto":"Parte dela é transformada em outras formas (calor, som).","correta":true},{"texto":"Ela desaparece do universo.","correta":null},{"texto":"Torna-se energia potencial elástica.","correta":null}]}, \
+{"pergunta":"[Intermediário] Por que um balanço para de oscilar depois de um tempo se ninguém o empurrar?","alternativas":[{"texto":"Devido à conservação da energia.","correta":null},{"texto":"Porque o trabalho das forças dissipativas (ar e atrito) consome a energia mecânica.","correta":true},{"texto":"Porque a gravidade aumenta.","correta":null},{"texto":"Porque a massa do balanço diminui.","correta":null},{"texto":"Porque o tempo parou.","correta":null}]}, \
+{"pergunta":"[Avançado] Se um bloco tem 200 J de energia mecânica inicial e chega ao fim do percurso com 150 J, qual foi o trabalho das forças dissipativas?","alternativas":[{"texto":"+50 J","correta":null},{"texto":"-50 J","correta":true},{"texto":"200 J","correta":null},{"texto":"350 J","correta":null},{"texto":"-150 J","correta":null}]}]} \
+]';
+
+
+
+
+const DADOS = JSON.parse(jsonPuro);
+
+    function shuffle(array) {
+      let m = array.length, t, i;
+      while (m) { i = Math.floor(Math.random() * m--); t = array[m]; array[m] = array[i]; array[i] = t; }
+      return array;
+    }
+
+    function render() {
+      const container = document.getElementById('mainAcc');
+      let html = "";
+      let qIDGlobal = 0;
+      shuffle([...DADOS]).forEach((d, dIdx) => {
+        let idAcc = "acc" + dIdx;
+        html += '<div class="accordion-item mb-2 border shadow-sm"><h2 class="accordion-header"><button class="accordion-button collapsed fw-bold bg-light text-dark disc-titulo" data-bs-toggle="collapse" data-bs-target="#' + idAcc + '">' + d.titulo + '</button></h2>';
+        html += '<div id="' + idAcc + '" class="accordion-collapse collapse"><div class="accordion-body">';
+        let contadorVisual = 0;
+        shuffle([...d.questoes]).forEach((q) => {
+          contadorVisual++; qIDGlobal++;
+          html += '<div id="box_q'+qIDGlobal+'" class="questao-bloco"><p class="fw-bold q-txt" data-qid="'+qIDGlobal+'">' + contadorVisual + '. ' + q.pergunta + '</p>';
+          shuffle([...q.alternativas]).forEach((alt, aIdx) => {
+            let letra = String.fromCharCode(97 + aIdx) + ") ";
+            html += '<div class="form-check my-2"><input class="form-check-input" type="radio" name="q' + qIDGlobal + '" data-correct="' + alt.correta + '" value="' + letra + alt.texto + '"><label class="form-check-label">' + letra + alt.texto + '</label></div>';
+          });
+          html += '</div>';
+        });
+        html += '</div></div></div>';
+      });
+      container.innerHTML = html;
+    }
+    window.onload = render;
+
+    function enviar() {
+      const aluno = document.getElementById('selAluno').value;
+      if(!aluno) return alert("⚠️ Selecione seu nome!");
+      
+      const blocos = document.querySelectorAll('.questao-bloco');
+      let resultados = []; let primeiraQuestaoVazia = null;
+
+      blocos.forEach(bloco => {
+        const qId = bloco.querySelector('.q-txt').dataset.qid;
+        const sel = bloco.querySelector('input[name="q'+qId+'"]:checked');
+        const disciplina = bloco.closest('.accordion-item').querySelector('.disc-titulo').innerText;
+        if(!sel) { 
+          bloco.classList.add('erro-questao');
+          if(!primeiraQuestaoVazia) primeiraQuestaoVazia = bloco;
+        } else {
+          bloco.classList.remove('erro-questao');
+          resultados.push({ 
+            disciplina: disciplina, 
+            pergunta: bloco.querySelector('.q-txt').innerText, 
+            resposta: sel.value, 
+            correta: sel.dataset.correct === "true" 
+          });
+        }
+      });
+
+      if(primeiraQuestaoVazia) {
+        const collapseEl = primeiraQuestaoVazia.closest('.accordion-collapse');
+        if (collapseEl) { new bootstrap.Collapse(collapseEl, { toggle: false }).show(); }
+        setTimeout(() => { primeiraQuestaoVazia.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+        return alert("⚠️ Responda todas as questões!");
+      }
+
+      const btn = document.getElementById('btn');
+      btn.disabled = true; 
+      btn.innerText = "🚀 ENVIANDO...";
+
+      let resumoObj = {}; let detalhesTxt = "";
+      resultados.forEach(r => {
+        if(!resumoObj[r.disciplina]) resumoObj[r.disciplina] = { acertos: 0, total: 0 };
+        resumoObj[r.disciplina].total++;
+        if(r.correta) resumoObj[r.disciplina].acertos++;
+        detalhesTxt += "["+r.disciplina+"] Q: "+r.pergunta+" R: "+r.resposta+" | ";
+      });
+
+      if (detalhesTxt.length > 48000) {
+        detalhesTxt = detalhesTxt.substring(0, 48000) + "... [TEXTO CORTADO]";
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbyLhBl7jRliC5oki7yt4eTHk_elEGikj1fH7Dfoiua1w72RFPNBPWSdv0ZDRfmFj96X/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({ 
+          documento: "Simulados Embaralhados 2026", 
+          aluno: aluno, 
+          resumo: resumoObj, 
+          detalhes: detalhesTxt 
+        })
+      })
+      .then(() => { 
+        alert("✅ Atividade enviada com sucesso!"); 
+        btn.innerText = "ENVIADO COM SUCESSO!";
+        btn.classList.replace('btn-success', 'btn-secondary');
+      })
+      .catch((err) => { 
+        alert("❌ Erro ao enviar. Tente novamente."); 
+        btn.disabled = false;
+        btn.innerText = "🚀 TENTAR ENVIAR NOVAMENTE"; 
+      });
+    }
+  </script>
+</body></html>

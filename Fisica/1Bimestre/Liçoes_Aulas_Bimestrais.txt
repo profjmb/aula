@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Física SEDUC - Diagnóstico 2ª Lei</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --primary: #004a8d; --secondary: #00a1df; }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', sans-serif; padding-top: 20px; }
+        .card-main { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); border: none; margin-bottom: 20px; }
+        .formula-box { background: #eef7ff; padding: 20px; border-radius: 10px; border-left: 6px solid var(--secondary); text-align: center; font-size: 1.8rem; margin: 20px 0; font-weight: bold; }
+        #tela-aula { display: none; }
+        .btn-opt { margin-bottom: 12px; text-align: left; padding: 18px; width: 100%; font-size: 1.05rem; }
+        .progresso-container { background: #e9ecef; height: 12px; border-radius: 6px; margin-bottom: 25px; overflow: hidden; }
+        .barra { background: #28a745; height: 100%; width: 0%; transition: 0.5s; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="tela-login" class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-main text-center shadow">     
+    
+            <!-- Bloco do Cabeçalho (Imagem + Título) -->       
+            <div class="card shadow-sm border-0 mb-3">
+                 <!-- Imagem responsiva com bordas superiores arredondadas -->
+                 <img src="CabecalhoForms.png" class="img-fluid rounded-top" alt="Cabeçalho Simulados">
+            </div>
+                <h3 class="mb-4 text-primary">Acesso do Estudante</h3>
+                <div class="mb-4 text-start">
+                    <label class="form-label fw-bold">Selecione seu nome:</label>
+                    <select id="selAluno" class="form-select form-select-lg">
+                        <option value="" selected disabled>Escolha aqui...</option>
+
+ <option>ANA CLARA SERAFIM SANTANA</option>
+ <option>RUAN VITOR DAS NEVES SANTANA</option>
+ <option>JOÃO PEDRO DE SOUZA LIMA</option>
+ <option>LEONARDO APARECIDO DE SOUZA</option>
+ <option>PIETRA GABRIELLY RAMALHO NESPOLI</option>
+ <option>ERICK JAMES VERDEIRO FREITAS</option>
+ <option>VITOR CANDIDO RODRIGUES</option>
+ <option>PABLO HENRIQUE GUIMARÃES</option>
+ <option>MATHEUS JOSE DOS SANTOS PURO</option>
+ <option>CIBELLI DOS SANTOS DE SOUZA</option>
+ <option>MARIA RITA DE CARVALHO RODELLA</option>
+ <option>MIKAEL DO NASCIMENTO PACHECO</option>
+ <option>ENZO RONCOLATO DOS SANTOS</option>
+ <option>PABLO DAVI LOPES CELESTINO</option>
+ <option>SOFIA ROCHA BISPO</option>
+ <option>THALITA DIAS SANTOS ALENCAR</option>
+ <option>LIVIA ISABELLY DA SILVA SENA</option>
+ <option>MATHEUS HENRIQUE JESUS MASCARI</option>
+ <option>HAGATHA NUNES DE LIMA</option>
+ <option>ISAQUE GABRIEL LUNA SOARES</option>
+ <option>GUSTAVO FELIPE MARQUES DE LIMA</option>
+ <option>VICTOR YUGO ANDRADE DA SILVA</option>
+ <option>ABNER CAMPIONI DE SOUZA</option>
+ <option>BRENNO SANTOS DA SILVA</option>
+ <option>DANIEL AGUIAR CRUZ DA CONCEIÇÃO</option>
+ <option>MIGUEL PANIAGUA SOUZA</option>
+ <option>MARIANA CRISTINA DOS SANTOS DA SILVA</option>
+ <option>EDILSON GABRIEL OLIVEIRA BORGES</option>
+ <option>GIOVANA GABRIELE SANTOS REIS</option>
+ <option>EDUARDO HENRIQUE GOMES</option>
+ <option>EMYLLI DE OLIVEIRA DOS SANTOS</option>
+ <option>PRISCILA DE CARVALHO FONSECA</option>
+ <option>PEDRO LUÍS DE OLIVEIRA CORREIA</option>
+ <option>RAYANNE PAES DA SILVA</option>
+ <option>KAILAYNE BRITO SANTOS</option>
+ <option>INGRIDY EDUARDA DOS SANTOS OLIVEIRA CHAGA</option>
+ <option>VICTOR HUGGO SA DA SILVA</option>
+ <option>KHYANE ADRIELLY PEREIRA DE MENEZES</option>
+
+
+
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-lg w-100 shadow" onclick="acessarTrilha()">ACESSAR TRILHA</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tela-aula">
+        <div class="progresso-container"><div id="barra" class="barra"></div></div>
+        <div class="card-main shadow-sm">
+            <h2 class="h4 text-primary fw-bold" id="titulo-sessao">AVALIAÇÃO</h2>
+            <hr>
+            <div id="conteudo-dinamico"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- DADOS COMPLETOS ---
+const QUESTOES = [
+    { q: "[SONDAGEM] Se você empurra o chão para baixo durante uma flexão, por que seu corpo sobe?", r: [{ txt: "Porque o chão reage empurrando você para cima com força igual.", diag: "CORRETO: Identifica o par ação-reação solo-pessoa.", c: true }, { txt: "Porque seus braços anulam a gravidade.", diag: "ERRO: A gravidade continua atuando; o movimento vem da força externa do solo.", c: false }, { txt: "Porque a força que você faz é maior que a reação do chão.", diag: "ERRO: Pela 3ª Lei, as forças de interação são sempre iguais em módulo.", c: false }] },
+    { q: "Pares de ação e reação podem se anular?", r: [{ txt: "Não, pois atuam em corpos diferentes.", diag: "CORRETO: Domina a regra fundamental da não anulação do par.", c: true }, { txt: "Sim, se tiverem a mesma intensidade.", diag: "ERRO: Forças só se anulam se aplicadas no mesmo corpo.", c: false }, { txt: "Sim, se o objeto estiver parado.", diag: "ERRO: Estar parado não muda a natureza do par de interação.", c: false }] },
+    { q: "Um ímã atrai um prego. O prego atrai o ímã?", r: [{ txt: "Sim, com a mesma intensidade de força.", diag: "CORRETO: Aplica a universalidade da 3ª Lei para forças de campo.", c: true }, { txt: "Não, apenas o ímã possui força magnética.", diag: "ERRO: Visão passiva da matéria. A força é uma interação mútua.", c: false }, { txt: "Sim, mas com uma força muito menor.", diag: "ERRO: Acredita que a fonte da força (ímã) 'manda' mais que o alvo.", c: false }] },
+    { q: "Uma mosca bate no para-brisa de um caminhão. Qual força é maior?", r: [{ txt: "As forças são iguais.", diag: "CORRETO: Não confunde o efeito (estrago) com a intensidade da força.", c: true }, { txt: "A do caminhão, devido à sua massa enorme.", diag: "ERRO: Confunde massa com força de interação.", c: false }, { txt: "A da mosca, pois ela estava em alta velocidade relativa.", diag: "ERRO: A 3ª lei garante igualdade independente de velocidade ou massa.", c: false }] },
+    { q: "Qual a direção e o sentido da força de reação em relação à ação?", r: [{ txt: "Mesma direção e sentido oposto.", diag: "CORRETO: Identifica as características vetoriais do par.", c: true }, { txt: "Direção perpendicular e sentido oposto.", diag: "ERRO: Ação e reação são sempre colineares (mesma linha).", c: false }, { txt: "Mesma direção e mesmo sentido.", diag: "ERRO: Se tivessem o mesmo sentido, não seriam oposição mútua.", c: false }] },
+    { q: "Ao remar um barco, o remador empurra a água para trás. Por que o barco vai para frente?", r: [{ txt: "A água empurra o remo/barco para frente.", diag: "CORRETO: Aplica a 3ª Lei em meios fluidos.", c: true }, { txt: "O movimento do remo corta a resistência da água.", diag: "ERRO: Descrição cinemática que ignora a dinâmica das forças.", c: false }, { txt: "A força do remador é transmitida diretamente ao ar.", diag: "ERRO: A interação principal para o movimento é com a água.", c: false }] },
+    { q: "O Peso e a Normal formam um par de Ação e Reação?", r: [{ txt: "Não, pois atuam no mesmo corpo.", diag: "CORRETO: Desmistifica o maior erro conceitual da dinâmica.", c: true }, { txt: "Sim, pois são iguais e opostas em superfícies planas.", diag: "ERRO: Confunde equilíbrio de forças com par de interação.", c: false }, { txt: "Sim, pois ambas dependem da gravidade.", diag: "ERRO: A Normal depende do contato, o Peso da gravidade.", c: false }] },
+    { q: "Se a toda ação corresponde uma reação igual, como um cavalo consegue puxar uma carroça?", r: [{ txt: "O cavalo empurra o chão com mais força do que a carroça o puxa.", diag: "CORRETO: Analisa o sistema carroça-cavalo-chão.", c: true }, { txt: "A força de ação do cavalo é um pouco maior que a reação.", diag: "ERRO: Viola o enunciado da 3ª Lei.", c: false }, { txt: "A 3ª Lei não se aplica a objetos em movimento acelerado.", diag: "ERRO: As leis de Newton são universais para referenciais inerciais.", c: false }] },
+    { q: "Onde está a reação à força Peso de um objeto?", r: [{ txt: "No centro da Terra.", diag: "CORRETO: Identifica que o par do Peso (Terra atrai corpo) é o corpo atraindo a Terra.", c: true }, { txt: "No chão, empurrando-o para baixo.", diag: "ERRO: Essa é a força de contato (Normal ou pressão).", c: false }, { txt: "No topo do objeto, puxando-o para cima.", diag: "ERRO: A reação nunca está no próprio objeto.", c: false }] },
+    { q: "[DESAFIO] Dois patinadores se empurram no gelo. O de 50kg e o de 100kg. Após o empurrão:", r: [{ txt: "O de 50kg terá o dobro da aceleração do de 100kg.", diag: "CORRETO: Relaciona a 3ª Lei (forças iguais) com a 2ª Lei (a = F/m).", c: true }, { txt: "O de 100kg não se moverá.", diag: "ERRO: Ambos sofrem a mesma força, logo ambos aceleram.", c: false }, { txt: "O de 50kg sofre uma força maior.", diag: "ERRO: As forças são obrigatoriamente iguais pelo princípio da interação.", c: false }] }
+];   let estado = { aluno: "", acertos: 0, index: 0, mapa: [], inicio: null };
+
+    function acessarTrilha() {
+        const sel = document.getElementById('selAluno');
+        if(!sel.value) return alert("⚠️ Selecione seu nome!");
+        estado.aluno = sel.value;
+        estado.inicio = new Date();
+        document.getElementById('tela-login').style.display = 'none';
+        document.getElementById('tela-aula').style.display = 'block';
+        renderizarQuestao();
+    }
+
+    function renderizarQuestao() {
+        const q = QUESTOES[estado.index];
+        document.getElementById('barra').style.width = ((estado.index / QUESTOES.length) * 100) + "%";
+        document.getElementById('titulo-sessao').innerText = estado.index === 0 ? "1. SONDAGEM" : "QUESTÃO " + estado.index;
+
+        document.getElementById('conteudo-dinamico').innerHTML = `
+            <p class="fs-5 fw-bold mb-4">${q.q}</p>
+            <div class="d-grid gap-2">
+                ${q.r.map((opt, i) => `
+                    <button class="btn btn-outline-primary btn-opt" onclick="validar(${i})">${opt.txt}</button>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function validar(idx) {
+        const q = QUESTOES[estado.index];
+        const escolhida = q.r[idx];
+        
+        estado.mapa.push(escolhida.diag);
+        if(escolhida.c) estado.acertos++;
+        
+        estado.index++;
+        if(estado.index < QUESTOES.length) renderizarQuestao();
+        else finalizar();
+    }
+
+    function finalizar() {
+        document.getElementById('barra').style.width = "100%";
+        document.getElementById('titulo-sessao').innerText = "CONCLUÍDO";
+        document.getElementById('conteudo-dinamico').innerHTML = `
+            <div class="text-center py-4">
+                <h3 class="text-success fw-bold">Trilha Concluída!</h3>
+                <p class="fs-4">Acertos: ${estado.acertos} de ${QUESTOES.length}</p>
+                <button id="btn-enviar" class="btn btn-success btn-lg px-5 shadow" onclick="enviarRelatorio()">🚀 ENVIAR PARA O PROFESSOR</button>
+            </div>
+        `;
+    }
+
+    async function enviarRelatorio() {
+        const btn = document.getElementById('btn-enviar');
+        const tempoTotal = Math.floor((new Date() - estado.inicio) / 1000) + "s";
+        
+        // --- COLOQUE SUA URL AQUI ---
+        const URL_WEBAPP = "https://script.google.com/macros/s/AKfycbxfm3FGQT5dkF4z7NXIrwB4kGL2X_r8ghrHzCfHEyzEFGemeFEbKdD408FHRtsgQFND/exec"; 
+
+        if(URL_WEBAPP === "SUA_URL_AQUI") {
+            alert("⚠️ Erro: URL da planilha não configurada no código.");
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerText = "🚀 ENVIANDO...";
+
+        const payload = {
+            aluno: estado.aluno,
+            turma: "1ª SÉRIE A",
+            habilidade: "EM13CNT204",
+            acertos: estado.acertos + "/" + QUESTOES.length,
+            mapaDetalhado: estado.mapa.join(" | "),
+            tempoGasto: tempoTotal
+        };
+
+        try {
+            await fetch(URL_WEBAPP, {
+                method: "POST",
+                mode: "no-cors",
+                body: JSON.stringify(payload)
+            });
+            
+            btn.innerText = "ENVIADO COM SUCESSO! ✅";
+            btn.className = "btn btn-secondary btn-lg w-100";
+            alert("✅ Tudo certo! Seu diagnóstico foi enviado.");
+        } catch (err) {
+            btn.disabled = false;
+            btn.innerText = "ERRO AO ENVIAR";
+            alert("❌ Falha de conexão. Tente novamente.");
+        }
+    }
+</script>
+</body>
+</html>
